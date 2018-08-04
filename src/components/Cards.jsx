@@ -3,27 +3,12 @@ import 'isomorphic-fetch';
 import 'es6-promise';
 
 class Cards extends Component {
-    constructor(props) {
-        super(props)
-        console.log('state in Cards line 8', this.props.data)
-
-        // next step: need to loop through films array, set keys, extract specific data
-        this.state = {
-            title: "",
-            description: "",
-            direction: "",
-            producer: ""
-        }
-    }
-
-    render() {
-        // create cards here
-        return (
-            <div className="card">
-                <h1>{this.props.title}</h1>
-            </div>
-        )
+    render () {
+        console.log(this.props.filmsArray)
+        return null         
     }
 }
+        
+// to do: loop through films array, set keys, extract title, description, director, producer, pass to card.jsx        
 
 export default Cards;
