@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Top from './Top.jsx'
 import Cards from './Cards.jsx'
-import 'isomorphic-fetch';
-import 'es6-promise';
+import Card from './Card.jsx'
 
 class App extends Component {
   constructor() {
@@ -22,6 +21,7 @@ class App extends Component {
       <div>
         <Top />
         <Cards filmsArray={this.state.films} />
+        <Card />
       </div>
 
     )
