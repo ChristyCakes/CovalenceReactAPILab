@@ -11,4 +11,5 @@ img {
 button {
     background-color: blue;
     color: white;
+    margin: 1rem;
 }

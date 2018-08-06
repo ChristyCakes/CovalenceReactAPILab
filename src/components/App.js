@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Top from './Top.jsx'
 import Cards from './Cards.jsx'
-import Films from './Films.jsx'
+import Films from './Films'
 
 class App extends Component {
   constructor() {
     super();
     this.state = { films: null };
-  };
+  }; 
 
   componentDidMount() {
     fetch("https://ghibliapi.herokuapp.com/films")
