@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Top from './Top.jsx'
 import Cards from './Cards.jsx'
-import Card from './Card.jsx'
+import Films from './Films.jsx'
 
 class App extends Component {
   constructor() {
@@ -20,8 +20,8 @@ class App extends Component {
     return (
       <div>
         <Top />
-        <Cards filmsArray={this.state.films} />
-        <Card />
+        <Films filmsArray={this.state.films} />
+        <Cards />
       </div>
 
     )
