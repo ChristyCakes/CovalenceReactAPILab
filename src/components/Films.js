@@ -2,23 +2,25 @@ import React from 'react';
 import Cards from './Cards.jsx'
 
 const Films = (props) => {
-    let filmInfo;
-
+    let filmInfo = [];
+    
     // because filmsArray is from async fetch, use conditional to wait for it       
     if (props.filmsArray) {
 
-        // create an object for the wanted film info
-        filmInfo = {
+        // loop through each film, create an object with 3 extracted properties for each film    
+        for (let i of props.filmsArray) {
+            i = {
+                title: i.title,
+                director: i.director,
+                description: i.description
+            },
 
-            // extract specifics from filmsArray
-            titles: (props.filmsArray).map(film => film.title),
-            directors: (props.filmsArray).map(film => film.director),
-            descriptions: (props.filmsArray).map(film => film.description)
+            // append i to filmInfo array
+            filmInfo.push(i);
         }
     }
-
-    // send object as props to Cards for display
-    return <Cards { ...filmInfo}/>
+    
+    return <Cards filmInfo={filmInfo}/>
 }
 
 export default Films;
