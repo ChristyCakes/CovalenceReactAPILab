@@ -4,35 +4,27 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 const Cards = (props) => {
-    console.log(props)
+    let filmCards;
+    if (props.filmInfo) {
 
-    if (props) {
-
-
-        // loop through each title, create a card for each
-        // (props.filmInfo).forEach( => )
-        // }
-        return (
-            <div>
-                <h1>Titles</h1>
-                <h1>{props.titles}</h1>
-            </div>
-
-
-
-            // <div>
-            //     <Card >
-            //         <CardContent>
-            //             <Typography variant="headline">title</Typography>
-            //             <Typography>Directed By:</Typography>
-            //             <Typography color="textSecondary">description here</Typography>
-            //         </CardContent>
-            //     </Card>
-            // </div>
-        )
-    } else {
-        console.log('props not passing')
+        // loop through each film object, create a card for each
+        filmCards = (props.filmInfo).map(obj => {
+            return (
+                <div key={obj.key}>
+                    <Card >
+                        <CardContent>
+                            <Typography variant="headline">{obj.title}</Typography>
+                            <Typography>Directed By: {obj.director}</Typography>
+                            <Typography color="textSecondary">{obj.description}</Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+            )
+        })
     }
+    return (
+        <div>{filmCards}</div>
+    )
 }
 
 export default Cards

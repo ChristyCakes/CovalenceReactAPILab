@@ -10,16 +10,16 @@ const Films = (props) => {
         // loop through each film, create an object with 3 extracted properties for each film    
         for (let i of props.filmsArray) {
             i = {
+                key: i.id,
                 title: i.title,
                 director: i.director,
                 description: i.description
-            },
+            }
 
-            // append i to filmInfo array
+            // append each set of 3 to filmInfo array
             filmInfo.push(i);
         }
     }
-    
     return <Cards filmInfo={filmInfo}/>
 }
 
