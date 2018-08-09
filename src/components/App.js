@@ -31,7 +31,6 @@ class App extends Component {
   }
 
   render() {
-
     if (this.state.button) {
       fetch("https://ghibliapi.herokuapp.com/films")
         .then(res => res.json())
@@ -42,14 +41,14 @@ class App extends Component {
       .then(res => res.json())
       .then(data => this.setState({ vehicles: data }))
       .catch(e => console.log(e))
-    }
+    } else {}
 
     return (
       <div>
         <Top handleClick={this.handleClick} handleClick2={this.handleClick2} />
-        <Films filmsArray={this.state.films} />
+        <Films filmsArray={this.state.films} show={this.state.button}/>
         <Cards />
-        <Vehicles vehiclesArray={this.state.vehicles} />
+        <Vehicles vehiclesArray={this.state.vehicles} show={this.state.vbutton}/>
         <Vcards />
       </div>
 

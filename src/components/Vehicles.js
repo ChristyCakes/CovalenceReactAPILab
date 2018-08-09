@@ -4,7 +4,7 @@ import Vcards from './Vcards.jsx'
 const Vehicles = (props) => {
     let vehicleInfo = [];
     
-    if (props.vehiclesArray) {
+    if (props.vehiclesArray && props.show) {
 
         for (let i of props.vehiclesArray) {
             i = {

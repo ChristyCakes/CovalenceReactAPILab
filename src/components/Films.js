@@ -5,7 +5,7 @@ const Films = (props) => {
     let filmInfo = [];
     
     // because filmsArray is from async fetch, use conditional to wait for it       
-    if (props.filmsArray) {
+    if (props.filmsArray && props.show) {
 
         // loop through each film, create an object with 3 extracted properties for each film    
         for (let i of props.filmsArray) {
