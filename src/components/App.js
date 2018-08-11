@@ -1,57 +1,61 @@
 import React, { Component } from 'react';
 import Top from './Top.jsx'
-import Cards from './Cards.jsx'
-import Films from './Films'
-import Vehicles from './Vehicles'
-import Vcards from './Vcards.jsx'
+import { FilmCards } from './Film'
+import LoadButton from './LoadButton.jsx'
+import { VehicleCards } from './Vehicle'
 
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
-      button: false,
       films: null,
-      vbutton: false,
-      vehicles: null
+      showFilms: false,
+      vehicles: null,
+      showVehicles: false
     };
-    this.handleClick = this.handleClick.bind(this)
-    this.handleClick2 = this.handleClick2.bind(this)
+
+    this.handleFilmClick = this.handleFilmClick.bind(this);
+    this.handleVehicleClick = this.handleVehicleClick.bind(this);
   };
 
-  handleClick() {
-    this.setState(prevState => ({
-      button: !prevState.button
-    }));
+  handleFilmClick() {
+
+    if (!this.state.showFilms) {
+      // fetch data only if button click changes showFilms to true
+      fetch("https://ghibliapi.herokuapp.com/films")
+        .then(res => res.json())
+        .then(data => this.setState({ films: data, showFilms: true }))
+        .catch(e => console.log(e))
+    } else {
+      // if no button click, hide the data; no need to load it
+      console.log("hide");
+      this.setState({ showFilms: false });  // ?
+    }
   }
 
-  handleClick2() {
-    this.setState(prevState => ({
-      vbutton: !prevState.vbutton
-    }))
+  handleVehicleClick() {
+
+    if (!this.state.showVehicles) {
+      fetch("https://ghibliapi.herokuapp.com/vehicles")
+        .then(res => res.json())
+        .then(data => this.setState({ vehicles: data, showVehicles: true }))
+        .catch(e => console.log(e))
+    } else {
+      this.setState({ showVehicles: false });  // ?
+    }
   }
 
   render() {
-    if (this.state.button) {
-      fetch("https://ghibliapi.herokuapp.com/films")
-        .then(res => res.json())
-        .then(data => this.setState({ films: data }))
-        .catch(e => console.log(e))
-    } else if (this.state.vbutton) {
-      fetch("https://ghibliapi.herokuapp.com/vehicles")
-      .then(res => res.json())
-      .then(data => this.setState({ vehicles: data }))
-      .catch(e => console.log(e))
-    } else {}
 
     return (
       <div>
-        <Top handleClick={this.handleClick} handleClick2={this.handleClick2} />
-        <Films filmsArray={this.state.films} show={this.state.button}/>
-        <Cards />
-        <Vehicles vehiclesArray={this.state.vehicles} show={this.state.vbutton}/>
-        <Vcards />
+        <Top />
+        <LoadButton text={"Load Films"} showingStuff={this.state.showFilms} stuffType={"Films"} handleClick={this.handleFilmClick} />
+        <FilmCards films={this.state.films} show={this.state.showFilms} />
+        <LoadButton text={"Load Vehicles"} showingStuff={this.state.showVehicles} stuffType={"Vehicles"} handleClick={this.handleVehicleClick} />
+        <VehicleCards films={this.state.vehicles} show={this.state.showVehicles} />
       </div>
-
     )
   }
 }
