@@ -4,10 +4,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Counter from './Counter.jsx';
 
-const VehicleCard = ({key, name, description, vehicle_class})  => {
+const VehicleCard = ({name, description, vehicle_class})  => {
 
 			return (
-                <div key={key}>
+                <div >
                     <Card >
                         <CardContent>
                             <Typography variant="headline">{name}</Typography>
@@ -31,7 +31,7 @@ const VehicleCards = ({vehicles, show}) => {
                 <div>
                 <Counter stuffType={"Vehicles"} number={vehicles.length} />
                 <hr />
-                { vehicles.map((vehicle) => (<VehicleCard {...vehicle} />)) }   
+                { vehicles.map((vehicle) => (<VehicleCard key={vehicle.id} {...vehicle} />)) }   
                 </div>
             );
 }

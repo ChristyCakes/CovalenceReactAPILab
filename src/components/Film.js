@@ -6,10 +6,10 @@ import Counter from './Counter.jsx';
 
 
 // Individual card for a film
-const FilmCard = ({key, title, director, description})  => {  // should key be id?
+const FilmCard = ({title, director, description})  => {  
 
 			return (
-                <div key={key}>
+                <div>
                     <Card >
                         <CardContent>
                             <Typography variant="headline">{title}</Typography>
@@ -24,8 +24,8 @@ const FilmCard = ({key, title, director, description})  => {  // should key be i
 // Set of film cards
 const FilmCards = ({films, show}) => {
 
-    if(!show) // don't need brackets here?
-        return (<div></div>); // return empty div instead of null to make a change
+    if(!show)
+        return (<div></div>); // better to return empty div instead of null to make a change
 
     if(!films)
         return null;
@@ -36,8 +36,7 @@ const FilmCards = ({films, show}) => {
                 <Counter stuffType={"Films"} number={films.length} />
                 { /*map over list of films and pass data to FilmCard component above*/} 
                 <hr />
-                { films.map((film) => (<FilmCard {...film} />)) }   
-                { /* ? getting key error on this line even though we set keys after passing data */}
+                { films.map((film) => (<FilmCard key={film.id} {...film} />)) }   
                 </div>
             );
 }

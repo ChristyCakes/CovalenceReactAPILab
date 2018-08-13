@@ -29,8 +29,7 @@ class App extends Component {
         .catch(e => console.log(e))
     } else {
       // if no button click, hide the data; no need to load it
-      console.log("hide");
-      this.setState({ showFilms: false });  // ?
+      this.setState({ showFilms: false });  // change state with 2nd click of button
     }
   }
 
@@ -42,7 +41,7 @@ class App extends Component {
         .then(data => this.setState({ vehicles: data, showVehicles: true }))
         .catch(e => console.log(e))
     } else {
-      this.setState({ showVehicles: false });  // ?
+      this.setState({ showVehicles: false });
     }
   }
 
@@ -52,9 +51,9 @@ class App extends Component {
       <div>
         <Top />
         <LoadButton text={"Load Films"} showingStuff={this.state.showFilms} stuffType={"Films"} handleClick={this.handleFilmClick} />
-        <FilmCards films={this.state.films} show={this.state.showFilms} />
         <LoadButton text={"Load Vehicles"} showingStuff={this.state.showVehicles} stuffType={"Vehicles"} handleClick={this.handleVehicleClick} />
-        <VehicleCards films={this.state.vehicles} show={this.state.showVehicles} />
+        <FilmCards films={this.state.films} show={this.state.showFilms} />
+        <VehicleCards vehicles={this.state.vehicles} show={this.state.showVehicles} />
       </div>
     )
   }
